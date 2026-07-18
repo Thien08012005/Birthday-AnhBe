@@ -4787,11 +4787,6 @@ button:disabled {
     margin-top: 15px;
   }
 
-  /* chữ dưới */
-
-  #btn-memory-next {
-    margin-top: 15px;
-  }
   #btn-start {
     position: relative;
     z-index: 9999;
@@ -4937,7 +4932,8 @@ img {
 
 .scene {
   width: 100vw;
-  height: 100dvh;
+  min-height: 100dvh;
+  height: auto;
   overflow: hidden;
 }
 
@@ -5134,5 +5130,32 @@ img {
     width: 75%;
 
     z-index: 1;
+  }
+}
+@media (max-width: 768px) {
+  #scene-memories {
+    min-height: auto !important;
+
+    height: auto !important;
+
+    padding-bottom: 80px;
+  }
+
+  #scene-memories .gallery-heart {
+    height: 42vh;
+  }
+
+  #scene-memories .memory-tip {
+    margin-top: 25px;
+
+    margin-bottom: 25px;
+  }
+
+  #scene-memories #btn-memory-next {
+    margin: 20px auto 50px !important;
+
+    position: relative !important;
+
+    transform: none !important;
   }
 }
