@@ -1,0 +1,4949 @@
+/*=========================================================
+        HAPPY BIRTHDAY CINEMATIC
+        STYLE.CSS - PART 1
+        RESET + BODY + LOADER + GALAXY
+=========================================================*/
+
+/*=========================================================
+                    RESET
+=========================================================*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+/*=========================================================
+                    ROOT COLOR
+=========================================================*/
+
+:root {
+  --pink: #ff5fa2;
+  --pink2: #ff8dc0;
+  --gold: #ffd56a;
+  --white: #ffffff;
+  --glass: rgba(255, 255, 255, 0.08);
+
+  --bg1: #020611;
+  --bg2: #081326;
+  --bg3: #12051d;
+
+  --shadow: 0 0 20px rgba(255, 95, 162, 0.5);
+}
+
+/*=========================================================
+                    BODY
+=========================================================*/
+
+body {
+  background: radial-gradient(
+    circle at top,
+    #14284d 0%,
+    #050913 35%,
+    #010205 100%
+  );
+
+  color: white;
+
+  overflow: hidden;
+
+  min-height: 100vh;
+
+  position: relative;
+}
+
+/*=========================================================
+                SELECTION
+=========================================================*/
+
+::selection {
+  background: var(--pink);
+
+  color: white;
+}
+
+/*=========================================================
+                    SCROLLBAR
+=========================================================*/
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #04070f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--pink), var(--gold));
+
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff70ae;
+}
+
+/*=========================================================
+                    LOADER
+=========================================================*/
+
+.loader-screen {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 99999;
+
+  background: radial-gradient(circle, #0f1730, #02030a);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  transition: 1s;
+}
+
+.loader-screen.hide {
+  opacity: 0;
+
+  visibility: hidden;
+}
+
+.loader-content {
+  text-align: center;
+}
+
+.loader-heart {
+  font-size: 75px;
+
+  animation: loaderBeat 1s infinite;
+}
+
+.loader-text {
+  margin-top: 25px;
+
+  font-size: 34px;
+
+  font-weight: 700;
+
+  color: white;
+}
+
+.loader-subtext {
+  margin-top: 15px;
+
+  color: #ddd;
+
+  font-size: 18px;
+}
+
+/*=========================================================
+                PROGRESS BAR
+=========================================================*/
+
+.progress-bar {
+  width: 320px;
+
+  height: 8px;
+
+  margin: 35px auto;
+
+  border-radius: 50px;
+
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.progress-fill {
+  width: 0;
+
+  height: 100%;
+
+  border-radius: 50px;
+
+  background: linear-gradient(90deg, #ff77c8, #ffd96f);
+
+  animation: loadingBar 3s forwards;
+}
+
+/*=========================================================
+                BACKGROUND
+=========================================================*/
+
+#background-layers {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: -20;
+
+  overflow: hidden;
+}
+
+/*=========================================================
+                    CANVAS
+=========================================================*/
+
+canvas {
+  position: absolute;
+
+  width: 100%;
+
+  height: 100%;
+
+  left: 0;
+
+  top: 0;
+}
+
+/*=========================================================
+                    STARS
+=========================================================*/
+
+.star {
+  position: absolute;
+
+  width: 2px;
+
+  height: 2px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+.star.big {
+  width: 5px;
+
+  height: 5px;
+
+  box-shadow:
+    0 0 12px white,
+    0 0 25px white;
+}
+
+/*=========================================================
+                    METEOR
+=========================================================*/
+
+.meteor {
+  position: absolute;
+
+  width: 180px;
+
+  height: 2px;
+
+  background: linear-gradient(to right, white, transparent);
+
+  transform: rotate(-25deg);
+
+  opacity: 0.8;
+
+  animation: meteorMove linear forwards;
+}
+
+/*=========================================================
+                    AURORA
+=========================================================*/
+
+.aurora {
+  position: absolute;
+
+  width: 120%;
+
+  height: 120%;
+
+  left: -10%;
+
+  top: -10%;
+
+  filter: blur(140px);
+
+  opacity: 0.18;
+
+  animation: auroraMove 18s infinite alternate;
+
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.8), transparent 60%);
+}
+
+/*=========================================================
+                    NEBULA
+=========================================================*/
+
+.nebula {
+  position: absolute;
+
+  width: 700px;
+
+  height: 700px;
+
+  border-radius: 50%;
+
+  filter: blur(120px);
+
+  opacity: 0.18;
+}
+
+.nebula.one {
+  top: -200px;
+
+  left: -100px;
+
+  background: #ff4ea3;
+}
+
+.nebula.two {
+  right: -200px;
+
+  bottom: -200px;
+
+  background: #4e7bff;
+}
+
+/*=========================================================
+                MEMORY HEART
+=========================================================*/
+
+#memory-center-heart {
+  position: absolute;
+
+  left: 50%;
+
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  font-size: 55px;
+
+  opacity: 0.25;
+
+  animation: pulseHeart 2s infinite;
+}
+
+/*=========================================================
+                ANIMATIONS
+=========================================================*/
+
+@keyframes loaderBeat {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.25);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes loadingBar {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.2;
+
+    transform: scale(0.5);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform: scale(1.8);
+  }
+
+  100% {
+    opacity: 0.2;
+
+    transform: scale(0.5);
+  }
+}
+
+@keyframes meteorMove {
+  from {
+    transform: translateX(-250px) translateY(0) rotate(-25deg);
+  }
+
+  to {
+    transform: translateX(1700px) translateY(600px) rotate(-25deg);
+  }
+}
+
+@keyframes auroraMove {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+
+  to {
+    transform: rotate(20deg) scale(1.3);
+  }
+}
+
+@keyframes pulseHeart {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.3);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+/*=========================================================
+        STYLE.CSS - PART 2A
+        SCENE + TYPOGRAPHY + GLASS
+=========================================================*/
+
+/*=========================================================
+                    MAIN
+=========================================================*/
+
+#cinematic-stage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/*=========================================================
+                    SCENE
+=========================================================*/
+
+.scene {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  visibility: hidden;
+
+  z-index: 0;
+
+  overflow: hidden;
+}
+#scene-letter {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.scene.active {
+  opacity: 1;
+
+  visibility: visible;
+
+  transform: scale(1);
+
+  z-index: 20;
+}
+
+/*=========================================================
+                CENTER STAGE
+=========================================================*/
+
+.center-stage {
+  width: min(1200px, 92%);
+
+  margin: auto;
+
+  text-align: center;
+
+  position: relative;
+
+  z-index: 5;
+}
+/*=========================================================
+                HEADINGS
+=========================================================*/
+
+h1 {
+  font-size: clamp(40px, 6vw, 76px);
+
+  font-weight: 900;
+
+  color: white;
+
+  line-height: 1.2;
+
+  text-shadow:
+    0 0 20px rgba(255, 255, 255, 0.35),
+    0 0 40px rgba(255, 105, 180, 0.25);
+}
+
+h2 {
+  font-size: clamp(24px, 3vw, 40px);
+
+  font-weight: 700;
+
+  margin-top: 18px;
+
+  color: #fff;
+}
+
+h3 {
+  font-size: clamp(20px, 2.5vw, 30px);
+
+  margin-top: 15px;
+
+  color: #ffd56a;
+
+  font-weight: 700;
+}
+
+/*=========================================================
+                PARAGRAPH
+=========================================================*/
+
+p {
+  font-size: 18px;
+
+  line-height: 1.9;
+
+  color: #ededed;
+}
+
+/*=========================================================
+                SUBTLE TEXT
+=========================================================*/
+
+.subtle-text {
+  opacity: 0.82;
+
+  margin-top: 20px;
+
+  letter-spacing: 1px;
+}
+
+/*=========================================================
+                HIGHLIGHT
+=========================================================*/
+
+.highlight-gold {
+  color: var(--gold);
+
+  text-shadow:
+    0 0 12px rgba(255, 213, 106, 0.5),
+    0 0 25px rgba(255, 213, 106, 0.35);
+}
+
+/*=========================================================
+                TYPING TITLE
+=========================================================*/
+
+.typing-text {
+  width: 100%;
+
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  min-height: 110px;
+
+  letter-spacing: 1px;
+
+  font-size: clamp(1.8rem, 4vw, 4rem);
+
+  line-height: 1.3;
+
+  text-align: center;
+
+  white-space: normal;
+
+  overflow: visible;
+
+  word-wrap: break-word;
+}
+
+/*=========================================================
+                GLASS EFFECT
+=========================================================*/
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.45),
+    0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+@supports (
+  (backdrop-filter: blur(18px)) or (-webkit-backdrop-filter: blur(18px))
+) {
+  .glass-effect {
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+  }
+}
+/*=========================================================
+                CARD
+=========================================================*/
+
+.card {
+  padding: 40px;
+
+  border-radius: 25px;
+}
+
+/*=========================================================
+                SHADOW
+=========================================================*/
+
+.soft-shadow {
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+}
+
+.glow {
+  box-shadow: 0 0 25px rgba(255, 105, 180, 0.35);
+}
+
+/*=========================================================
+                DIVIDER
+=========================================================*/
+
+.line {
+  width: 180px;
+
+  height: 2px;
+
+  margin: 30px auto;
+
+  background: linear-gradient(
+    to right,
+
+    transparent,
+    var(--gold),
+    transparent
+  );
+}
+
+/*=========================================================
+                HIDDEN
+=========================================================*/
+
+.hidden {
+  display: none;
+}
+
+/*=========================================================
+                OPACITY
+=========================================================*/
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-1 {
+  opacity: 1;
+}
+
+/*=========================================================
+                FLEX
+=========================================================*/
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+}
+
+.column {
+  flex-direction: column;
+}
+
+/*=========================================================
+                WIDTH
+=========================================================*/
+
+.w-100 {
+  width: 100%;
+}
+
+.h-100 {
+  height: 100%;
+}
+/*=========================================================
+        STYLE.CSS - PART 2B
+        BUTTONS
+=========================================================*/
+
+/*=========================================================
+                BUTTON CHUNG
+=========================================================*/
+
+button {
+  font-family: "Poppins", sans-serif;
+
+  border: none;
+
+  outline: none;
+
+  cursor: pointer;
+
+  transition: 0.4s;
+}
+
+/*=========================================================
+            BUTTON CINEMATIC
+=========================================================*/
+
+.btn-cinematic {
+  position: relative;
+
+  display: inline-flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 35px;
+
+  padding: 18px 55px;
+
+  border-radius: 60px;
+
+  background: linear-gradient(135deg, #ff5fa2, #ff86c1, #ffd56a);
+
+  color: white;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 0 25px rgba(255, 95, 162, 0.4),
+    0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+/*=========================================================
+            SHINE EFFECT
+=========================================================*/
+
+.btn-cinematic::before {
+  content: "";
+
+  position: absolute;
+
+  top: -100%;
+
+  left: -120%;
+
+  width: 70%;
+
+  height: 300%;
+
+  background: rgba(255, 255, 255, 0.35);
+
+  transform: rotate(25deg);
+
+  transition: 0.7s;
+}
+
+.btn-cinematic:hover::before {
+  left: 140%;
+}
+
+/*=========================================================
+            HOVER
+=========================================================*/
+
+.btn-cinematic:hover {
+  transform: translateY(-6px) scale(1.05);
+
+  box-shadow:
+    0 0 45px rgba(255, 95, 162, 0.65),
+    0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+/*=========================================================
+            ACTIVE
+=========================================================*/
+
+.btn-cinematic:active {
+  transform: scale(0.96);
+}
+
+/*=========================================================
+            BUTTON NEXT
+=========================================================*/
+
+.btn-next {
+  margin-top: 40px;
+
+  padding: 16px 45px;
+
+  border-radius: 55px;
+
+  background: linear-gradient(90deg, #ffd56a, #ff5fa2);
+
+  color: white;
+
+  font-size: 17px;
+
+  font-weight: 700;
+
+  box-shadow: 0 0 18px rgba(255, 213, 106, 0.4);
+}
+
+.btn-next:hover {
+  transform: scale(1.08);
+
+  box-shadow: 0 0 35px rgba(255, 213, 106, 0.65);
+}
+
+/*=========================================================
+            BUTTON ACTION
+=========================================================*/
+
+.btn-action {
+  margin-top: 35px;
+
+  padding: 18px 55px;
+
+  border-radius: 55px;
+
+  background: #ff5fa2;
+
+  color: white;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  box-shadow: 0 0 22px rgba(255, 95, 162, 0.55);
+}
+
+.btn-action:hover {
+  background: #ff73b3;
+
+  transform: translateY(-4px);
+
+  box-shadow: 0 0 40px rgba(255, 95, 162, 0.8);
+}
+
+/*=========================================================
+            RIPPLE EFFECT
+=========================================================*/
+
+.btn-cinematic::after,
+.btn-next::after,
+.btn-action::after {
+  content: "";
+
+  position: absolute;
+
+  width: 20px;
+
+  height: 20px;
+
+  background: rgba(255, 255, 255, 0.35);
+
+  border-radius: 50%;
+
+  opacity: 0;
+
+  transform: scale(1);
+}
+
+.btn-cinematic:active::after,
+.btn-next:active::after,
+.btn-action:active::after {
+  animation: ripple 0.6s;
+}
+
+/*=========================================================
+            ICON
+=========================================================*/
+
+.btn-cinematic i,
+.btn-next i,
+.btn-action i {
+  transition: 0.4s;
+}
+
+.btn-cinematic:hover i {
+  transform: rotate(180deg);
+}
+
+.btn-next:hover i {
+  transform: translateX(6px);
+}
+
+.btn-action:hover i {
+  transform: scale(1.2);
+}
+
+/*=========================================================
+            DISABLED
+=========================================================*/
+
+button:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+
+  box-shadow: none;
+}
+
+/*=========================================================
+            NEON BORDER
+=========================================================*/
+
+.btn-cinematic {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/*=========================================================
+            PULSE
+=========================================================*/
+
+.btn-pulse {
+  animation: buttonPulse 2s infinite;
+}
+
+/*=========================================================
+            KEYFRAMES
+=========================================================*/
+
+@keyframes ripple {
+  from {
+    opacity: 0.7;
+
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+
+    transform: scale(18);
+  }
+}
+
+@keyframes buttonPulse {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 95, 162, 0.6);
+  }
+
+  50% {
+    box-shadow: 0 0 35px rgba(255, 95, 162, 0.85);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rgba(255, 95, 162, 0.6);
+  }
+}
+/*=========================================================
+        STYLE.CSS - PART 2C
+        ANIMATIONS
+=========================================================*/
+
+/*=========================================================
+                FADE IN
+=========================================================*/
+
+.fade-in {
+  opacity: 0;
+
+  animation: fadeIn 1.2s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/*=========================================================
+                FADE UP
+=========================================================*/
+
+.fade-up {
+  opacity: 1;
+
+  transform: translateY(0);
+
+  animation: fadeUp 1s forwards;
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+/*=========================================================
+                SCALE IN
+=========================================================*/
+
+.scale-in {
+  opacity: 0;
+
+  transform: scale(0.75);
+
+  animation: scaleIn 0.9s forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+
+    transform: scale(0.75);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: scale(1);
+  }
+}
+
+/*=========================================================
+                FLOATING
+=========================================================*/
+
+.floating {
+  animation: floating 4s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/*=========================================================
+            SLIDE LEFT
+=========================================================*/
+
+.slide-in-left {
+  opacity: 0;
+
+  transform: translateX(-120px);
+
+  animation: slideLeft 1s forwards;
+}
+
+@keyframes slideLeft {
+  to {
+    opacity: 1;
+
+    transform: translateX(0);
+  }
+}
+
+/*=========================================================
+            SLIDE RIGHT
+=========================================================*/
+
+.slide-in-right {
+  opacity: 0;
+
+  transform: translateX(120px);
+
+  animation: slideRight 1s forwards;
+}
+
+@keyframes slideRight {
+  to {
+    opacity: 1;
+
+    transform: translateX(0);
+  }
+}
+
+/*=========================================================
+            SLIDE TOP
+=========================================================*/
+
+.slide-in-top {
+  opacity: 0;
+
+  transform: translateY(-100px);
+
+  animation: slideTop 1s forwards;
+}
+
+@keyframes slideTop {
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+/*=========================================================
+            SLIDE BOTTOM
+=========================================================*/
+
+.slide-in-bottom {
+  opacity: 0;
+
+  transform: translateY(100px);
+
+  animation: slideBottom 1s forwards;
+}
+
+@keyframes slideBottom {
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+/*=========================================================
+                ZOOM
+=========================================================*/
+
+.zoom {
+  animation: zoom 2s infinite;
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/*=========================================================
+                HEART PULSE
+=========================================================*/
+
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+
+.pulse-subtle {
+  animation: pulseSubtle 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.3);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseSubtle {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/*=========================================================
+                ROTATE
+=========================================================*/
+
+.rotate {
+  animation: rotate360 12s linear infinite;
+}
+
+@keyframes rotate360 {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*=========================================================
+                GLOW
+=========================================================*/
+
+.glow-animation {
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px rgba(255, 95, 162, 0.35);
+  }
+
+  to {
+    box-shadow: 0 0 35px rgba(255, 95, 162, 0.9);
+  }
+}
+
+/*=========================================================
+                SHAKE
+=========================================================*/
+
+.shake {
+  animation: shake 0.6s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(-8px);
+  }
+
+  40% {
+    transform: translateX(8px);
+  }
+
+  60% {
+    transform: translateX(-6px);
+  }
+
+  80% {
+    transform: translateX(6px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/*=========================================================
+                BOUNCE
+=========================================================*/
+
+.bounce {
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+/*=========================================================
+                DELAY
+=========================================================*/
+
+.delay-1 {
+  animation-delay: 0.3s;
+}
+
+.delay-2 {
+  animation-delay: 0.6s;
+}
+
+.delay-3 {
+  animation-delay: 0.9s;
+}
+
+.delay-4 {
+  animation-delay: 1.2s;
+}
+
+.delay-5 {
+  animation-delay: 1.5s;
+}
+
+.delay-6 {
+  animation-delay: 1.8s;
+}
+
+.delay-7 {
+  animation-delay: 2.1s;
+}
+
+.delay-8 {
+  animation-delay: 2.4s;
+}
+
+.delay-9 {
+  animation-delay: 2.7s;
+}
+
+.delay-10 {
+  animation-delay: 3s;
+}
+/*=========================================================
+        STYLE.CSS - PART 3A
+        SCENE 1 - INTRO
+=========================================================*/
+
+/*=========================================================
+                SCENE 1
+=========================================================*/
+
+#scene-intro {
+  position: relative;
+
+  overflow: hidden;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.05),
+    transparent 45%
+  );
+}
+
+/*=========================================================
+                INTRO CONTENT
+=========================================================*/
+
+.intro-content {
+  max-width: 1000px;
+
+  margin: auto;
+
+  padding: 40px;
+
+  position: relative;
+
+  z-index: 5;
+}
+
+/*=========================================================
+                HERO TITLE
+=========================================================*/
+
+.intro-content h1 {
+  font-size: clamp(48px, 7vw, 88px);
+
+  font-weight: 900;
+
+  line-height: 1.15;
+
+  letter-spacing: 2px;
+
+  color: white;
+
+  text-shadow:
+    0 0 20px rgba(255, 255, 255, 0.4),
+    0 0 40px rgba(255, 95, 162, 0.25),
+    0 0 80px rgba(255, 213, 106, 0.18);
+}
+
+/*=========================================================
+                SUB TITLE
+=========================================================*/
+
+.intro-content h2 {
+  margin-top: 30px;
+
+  font-size: 34px;
+
+  color: #f4f4f4;
+
+  font-weight: 600;
+}
+
+/*=========================================================
+                NAME
+=========================================================*/
+
+.intro-content h3 {
+  margin-top: 20px;
+
+  font-size: 54px;
+
+  color: var(--gold);
+
+  font-weight: 900;
+
+  letter-spacing: 3px;
+
+  text-shadow:
+    0 0 20px rgba(255, 213, 106, 0.6),
+    0 0 50px rgba(255, 213, 106, 0.35);
+}
+
+/*=========================================================
+                DESCRIPTION
+=========================================================*/
+
+.intro-content .subtle-text {
+  margin-top: 25px;
+
+  font-size: 22px;
+
+  color: #dddddd;
+
+  letter-spacing: 1px;
+}
+
+/*=========================================================
+                HERO GLOW
+=========================================================*/
+
+.intro-content::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+
+  top: 50%;
+
+  width: 700px;
+
+  height: 700px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 95, 162, 0.25),
+    rgba(255, 213, 106, 0.12),
+    transparent 70%
+  );
+
+  filter: blur(90px);
+
+  z-index: -1;
+
+  animation: introGlow 6s ease-in-out infinite alternate;
+}
+
+/*=========================================================
+                LIGHT RAY
+=========================================================*/
+
+.intro-content::after {
+  content: "";
+
+  position: absolute;
+
+  top: -200px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 4px;
+
+  height: 500px;
+
+  background: linear-gradient(
+    transparent,
+    rgba(255, 255, 255, 0.9),
+    transparent
+  );
+
+  filter: blur(8px);
+
+  opacity: 0.4;
+}
+
+/*=========================================================
+                TYPING
+=========================================================*/
+
+.typing-text {
+  width: 100%;
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  min-height: 110px;
+
+  letter-spacing: 1px;
+
+  font-size: clamp(2rem, 5vw, 4.5rem);
+
+  line-height: 1.2;
+
+  text-align: center;
+
+  white-space: normal;
+
+  overflow: hidden;
+
+  word-break: break-word;
+}
+
+/*=========================================================
+                CURSOR
+=========================================================*/
+
+.typing-text::after {
+  content: "|";
+
+  margin-left: 6px;
+
+  animation: blinkCursor 0.8s infinite;
+}
+/*=========================================================
+                SMALL STARS
+=========================================================*/
+
+#scene-intro .small-star {
+  position: absolute;
+
+  width: 4px;
+
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  box-shadow:
+    0 0 10px white,
+    0 0 20px white;
+
+  animation: introStar 3s infinite;
+}
+
+/*=========================================================
+                INTRO PARTICLE
+=========================================================*/
+
+.intro-particle {
+  position: absolute;
+
+  width: 8px;
+
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: var(--gold);
+
+  box-shadow: 0 0 15px var(--gold);
+}
+
+/*=========================================================
+                TITLE ANIMATION
+=========================================================*/
+
+.intro-content h1 {
+  animation: titleZoom 2.5s ease;
+}
+
+.intro-content h2 {
+  animation: fadeUp 1.2s forwards;
+}
+
+.intro-content h3 {
+  animation: fadeUp 1.6s forwards;
+}
+
+.subtle-text {
+  animation: fadeUp 2s forwards;
+}
+
+/*=========================================================
+                KEYFRAMES
+=========================================================*/
+
+@keyframes introGlow {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+
+@keyframes titleZoom {
+  from {
+    opacity: 0;
+
+    transform: scale(0.7);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: scale(1);
+  }
+}
+
+@keyframes blinkCursor {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes introStar {
+  0% {
+    opacity: 0.2;
+
+    transform: scale(0.5);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform: scale(2);
+  }
+
+  100% {
+    opacity: 0.2;
+
+    transform: scale(0.5);
+  }
+}
+/*=========================================================
+        STYLE.CSS - PART 3B
+        SCENE 1 - BUTTON + LIGHT EFFECT
+=========================================================*/
+
+/*=========================================================
+                START BUTTON
+=========================================================*/
+
+#btn-start {
+  position: relative;
+
+  margin-top: 55px;
+
+  padding: 20px 65px;
+
+  font-size: 20px;
+
+  font-weight: 700;
+
+  border-radius: 60px;
+
+  overflow: hidden;
+
+  z-index: 5;
+
+  animation: buttonFloat 3s ease-in-out infinite;
+}
+
+/*=========================================================
+            BUTTON GRADIENT
+=========================================================*/
+
+#btn-start {
+  background: linear-gradient(135deg, #ff4fa0, #ff89c7, #ffd96a);
+
+  color: white;
+
+  box-shadow:
+    0 0 25px rgba(255, 95, 162, 0.45),
+    0 0 70px rgba(255, 213, 106, 0.18);
+}
+
+/*=========================================================
+            SHINE
+=========================================================*/
+
+#btn-start::before {
+  content: "";
+
+  position: absolute;
+
+  top: -120%;
+
+  left: -120%;
+
+  width: 60%;
+
+  height: 320%;
+
+  background: rgba(255, 255, 255, 0.45);
+
+  transform: rotate(25deg);
+
+  transition: 0.8s;
+}
+
+#btn-start:hover::before {
+  left: 150%;
+}
+
+/*=========================================================
+            HOVER
+=========================================================*/
+
+#btn-start:hover {
+  transform: translateY(-8px) scale(1.06);
+
+  box-shadow:
+    0 0 35px rgba(255, 95, 162, 0.8),
+    0 0 90px rgba(255, 213, 106, 0.3);
+}
+
+/*=========================================================
+            ACTIVE
+=========================================================*/
+
+#btn-start:active {
+  transform: scale(0.96);
+}
+
+/*=========================================================
+            BUTTON RING
+=========================================================*/
+
+#btn-start::after {
+  content: "";
+
+  position: absolute;
+
+  inset: -5px;
+
+  border-radius: 70px;
+
+  border: 2px solid rgba(255, 255, 255, 0.25);
+
+  animation: ringGlow 2.5s infinite;
+}
+
+/*=========================================================
+            HERO LIGHT
+=========================================================*/
+
+.hero-light {
+  position: absolute;
+
+  width: 700px;
+
+  height: 700px;
+
+  left: 50%;
+
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 213, 106, 0.2),
+    rgba(255, 95, 162, 0.12),
+    transparent 70%
+  );
+
+  filter: blur(100px);
+
+  animation: heroLight 8s infinite alternate;
+
+  z-index: -2;
+}
+
+/*=========================================================
+            LIGHT CIRCLE
+=========================================================*/
+
+.light-circle {
+  position: absolute;
+
+  width: 600px;
+
+  height: 600px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  left: 50%;
+
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  animation: rotateCircle 30s linear infinite;
+}
+
+/*=========================================================
+            STAR GLOW
+=========================================================*/
+
+.star-glow {
+  position: absolute;
+
+  width: 5px;
+
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  box-shadow:
+    0 0 12px white,
+    0 0 25px white,
+    0 0 40px white;
+
+  animation: starGlow 2s infinite alternate;
+}
+
+/*=========================================================
+            MOUSE LIGHT
+=========================================================*/
+
+.mouse-light {
+  position: fixed;
+
+  width: 320px;
+
+  height: 320px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.14),
+    transparent 70%
+  );
+
+  transform: translate(-50%, -50%);
+
+  filter: blur(35px);
+
+  z-index: 2;
+}
+
+/*=========================================================
+            HERO SPARKLE
+=========================================================*/
+
+.hero-spark {
+  position: absolute;
+
+  width: 7px;
+
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #ffd96a;
+
+  box-shadow:
+    0 0 12px #ffd96a,
+    0 0 28px #ffd96a;
+
+  animation: sparkFloat 5s linear infinite;
+}
+
+/*=========================================================
+            CAMERA ZOOM
+=========================================================*/
+
+.camera-zoom {
+  animation: cameraZoom 2s ease forwards;
+}
+
+/*=========================================================
+            KEYFRAMES
+=========================================================*/
+
+@keyframes buttonFloat {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroLight {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+@keyframes rotateCircle {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes ringGlow {
+  0% {
+    opacity: 0.3;
+
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 0.3;
+
+    transform: scale(1);
+  }
+}
+
+@keyframes starGlow {
+  from {
+    opacity: 0.3;
+
+    transform: scale(0.6);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: scale(1.8);
+  }
+}
+
+@keyframes sparkFloat {
+  0% {
+    transform: translateY(30px);
+
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-250px);
+
+    opacity: 0;
+  }
+}
+
+@keyframes cameraZoom {
+  from {
+    transform: scale(1);
+
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.15);
+
+    opacity: 0;
+  }
+}
+/*=====================================================
+            PART 3C
+            MEMORY GALLERY
+=====================================================*/
+
+#scene-memories {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*----------------------------------
+        Gallery
+-----------------------------------*/
+
+.gallery-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/*----------------------------------
+        Heart Center
+-----------------------------------*/
+
+.memory-center-point {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 90px;
+  animation: pulseHeart 2s infinite;
+  filter: drop-shadow(0 0 30px #ff4d88);
+  z-index: 5;
+}
+
+/*----------------------------------
+        Polaroid
+-----------------------------------*/
+
+.polaroid-photo {
+  position: absolute;
+  width: 260px;
+  padding: 15px;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+
+  cursor: pointer;
+
+  opacity: 0;
+
+  transition:
+    transform 0.5s,
+    box-shadow 0.5s,
+    opacity 0.8s;
+
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+}
+/*----------------------------------
+        Image
+-----------------------------------*/
+
+.polaroid-photo img {
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+
+/*----------------------------------
+        Caption
+-----------------------------------*/
+
+.photo-caption {
+  margin-top: 12px;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/*----------------------------------
+        Hover
+-----------------------------------*/
+
+.polaroid-photo:hover {
+  transform: scale(1.08) rotate(0deg);
+
+  box-shadow:
+    0 0 25px #ff7eb5,
+    0 0 60px rgba(255, 126, 181, 0.5);
+}
+
+/*----------------------------------
+        Click Zoom
+-----------------------------------*/
+
+.polaroid-photo.active {
+  transform: scale(1.25) !important;
+
+  z-index: 999;
+}
+
+/*----------------------------------
+        Positions
+-----------------------------------*/
+
+/*----------------------------------
+        Floating
+-----------------------------------*/
+
+.photo-card {
+  animation: floatingPhoto 6s ease-in-out infinite;
+}
+
+.p1 {
+  animation-delay: 1s;
+}
+
+.p2 {
+  animation-delay: 2s;
+}
+
+.p3 {
+  animation-delay: 3s;
+}
+
+.p4 {
+  animation-delay: 4s;
+}
+
+.p5 {
+  animation-delay: 5s;
+}
+
+.p6 {
+  animation-delay: 6s;
+}
+
+.p7 {
+  animation-delay: 7s;
+}
+
+.p8 {
+  animation-delay: 8s;
+}
+
+.p9 {
+  animation-delay: 9s;
+}
+
+.p10 {
+  animation-delay: 10s;
+}
+/*----------------------------------
+        Instruction
+-----------------------------------*/
+
+.instruction-text {
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 35px;
+
+  transform: translateX(-50%);
+
+  color: #fff;
+
+  font-size: 20px;
+
+  letter-spacing: 2px;
+
+  text-shadow: 0 0 15px #ff7eb5;
+
+  animation: pulseText 2s infinite;
+}
+
+/*----------------------------------
+        Sparkle
+-----------------------------------*/
+
+.polaroid-photo::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 20px;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+
+  transform: translateX(-120%);
+
+  transition: 1s;
+}
+
+.polaroid-photo:hover::before {
+  transform: translateX(120%);
+}
+
+/*----------------------------------
+        Animations
+-----------------------------------*/
+
+@keyframes floatingPhoto {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -12px;
+  }
+}
+
+@keyframes pulseHeart {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+
+@keyframes pulseText {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+/*=====================================================
+                PART 4
+            SCENE PARTICLE
+=====================================================*/
+
+#scene-particle {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 120, 180, 0.08),
+    transparent 70%
+  );
+}
+
+/*==================================
+        PARTICLE CONTENT
+===================================*/
+
+.particle-content {
+  position: relative;
+
+  width: 100%;
+
+  text-align: center;
+
+  z-index: 5;
+}
+
+/*==================================
+            MAIN NAME
+===================================*/
+
+.h1-main {
+  font-size: 72px;
+
+  font-weight: 900;
+
+  color: #fff;
+
+  letter-spacing: 8px;
+
+  text-transform: uppercase;
+
+  text-shadow:
+    0 0 15px #fff,
+    0 0 35px #ff70b5,
+    0 0 60px #ff4d88;
+
+  animation:
+    glowName 3s infinite alternate,
+    floatingName 5s ease-in-out infinite;
+}
+
+/*==================================
+            SUB NAME
+===================================*/
+
+.h2-sub {
+  margin-top: 20px;
+
+  font-size: 36px;
+
+  color: #ffd8e8;
+
+  font-weight: 700;
+
+  letter-spacing: 4px;
+
+  text-shadow: 0 0 20px #ff7eb5;
+
+  animation: fadeUp 1.5s forwards;
+}
+
+/*==================================
+            DESCRIPTION
+===================================*/
+
+.p-desc {
+  margin-top: 25px;
+
+  color: #fff;
+
+  font-size: 20px;
+
+  opacity: 0.85;
+
+  letter-spacing: 2px;
+}
+
+/*==================================
+        PARTICLE CANVAS
+===================================*/
+
+#particle-canvas {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+/*==================================
+        TARGET TEXT
+===================================*/
+
+#particle-target-name {
+  display: none;
+}
+
+/*==================================
+        NEXT BUTTON
+===================================*/
+
+#btn-trigger-particle {
+  margin-top: 50px;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: 0.6s;
+}
+
+#btn-trigger-particle.show {
+  opacity: 1;
+
+  pointer-events: auto;
+}
+
+/*==================================
+        AURORA LIGHT
+===================================*/
+
+#scene-particle::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 120, 180, 0.18),
+    transparent 70%
+  );
+
+  animation: auroraMove 8s infinite alternate;
+
+  z-index: 0;
+}
+
+/*==================================
+            SPARKLES
+===================================*/
+
+.spark {
+  position: absolute;
+
+  width: 4px;
+
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  box-shadow:
+    0 0 10px white,
+    0 0 25px #ff80b8;
+
+  animation: sparkle 2s infinite;
+}
+
+/*==================================
+        PARTICLE GLOW
+===================================*/
+
+.particle-dot {
+  position: absolute;
+
+  width: 5px;
+
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #ff75b7;
+
+  box-shadow:
+    0 0 12px #ff75b7,
+    0 0 25px #ff75b7;
+}
+
+/*==================================
+        ANIMATIONS
+===================================*/
+
+@keyframes glowName {
+  from {
+    text-shadow:
+      0 0 10px white,
+      0 0 20px #ff75b7,
+      0 0 40px #ff75b7;
+  }
+
+  to {
+    text-shadow:
+      0 0 20px white,
+      0 0 45px #ff4f9d,
+      0 0 90px #ff4f9d;
+  }
+}
+
+@keyframes floatingName {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes auroraMove {
+  from {
+    transform: translateX(-5%) scale(1);
+  }
+
+  to {
+    transform: translateX(5%) scale(1.2);
+  }
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0.2;
+
+    transform: scale(0.5);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform: scale(1.5);
+  }
+}
+/*=====================================================
+                PART 5
+            SCENE CAKE
+=====================================================*/
+
+#scene-cake {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 180, 210, 0.08),
+    transparent 70%
+  );
+}
+
+/*====================================
+        CONTENT
+====================================*/
+
+.cake-content {
+  text-align: center;
+
+  z-index: 5;
+}
+
+/*====================================
+        CAKE
+====================================*/
+
+.cake-premium {
+  position: relative;
+
+  width: 260px;
+
+  margin: auto;
+
+  animation: floatingCake 4s ease-in-out infinite;
+}
+
+/*====================================
+        PLATE
+====================================*/
+
+.plate {
+  width: 280px;
+
+  height: 22px;
+
+  background: linear-gradient(#fff, #ddd);
+
+  border-radius: 50%;
+
+  margin: auto;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+}
+
+/*====================================
+        LAYERS
+====================================*/
+
+.layer {
+  position: relative;
+
+  width: 220px;
+
+  margin: auto;
+
+  border-radius: 18px;
+
+  box-shadow:
+    inset 0 -10px rgba(0, 0, 0, 0.12),
+    0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.layer1 {
+  height: 70px;
+
+  background: #ff8db6;
+}
+
+.layer2 {
+  margin-top: -6px;
+
+  width: 190px;
+
+  height: 60px;
+
+  background: #ffb3d0;
+}
+
+.layer3 {
+  margin-top: -6px;
+
+  width: 160px;
+
+  height: 50px;
+
+  background: #ffd2e5;
+}
+
+/*====================================
+            ICING
+====================================*/
+
+.icing {
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 18px;
+
+  border-radius: 20px;
+
+  background: white;
+
+  overflow: hidden;
+}
+
+.icing::after {
+  content: "";
+
+  position: absolute;
+
+  width: 100%;
+
+  height: 20px;
+
+  background: radial-gradient(circle, white 45%, transparent 46%);
+
+  background-size: 22px 22px;
+
+  top: 8px;
+}
+
+/*====================================
+        CANDLE
+====================================*/
+
+.candle-group {
+  position: absolute;
+
+  top: -45px;
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+}
+
+.candle {
+  width: 16px;
+
+  height: 45px;
+
+  background: repeating-linear-gradient(
+    45deg,
+    #ff89c0,
+    #ff89c0 5px,
+    #ffffff 5px,
+    #ffffff 10px
+  );
+
+  border-radius: 8px;
+}
+
+/*====================================
+            FLAME
+====================================*/
+
+.flame {
+  position: absolute;
+
+  top: -18px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 16px;
+
+  height: 22px;
+
+  background: radial-gradient(circle, #fff5b5, #ffb400);
+
+  border-radius: 50% 50% 50% 50%;
+
+  box-shadow:
+    0 0 20px gold,
+    0 0 40px orange;
+
+  animation: flicker 0.15s infinite alternate;
+}
+
+.flame.off {
+  opacity: 0;
+
+  transform: translateX(-50%) scale(0.2);
+}
+
+/*====================================
+        SMOKE
+====================================*/
+
+#smoke-puff {
+  position: absolute;
+
+  top: -28px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 20px;
+
+  height: 20px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.45);
+
+  filter: blur(6px);
+
+  opacity: 0;
+}
+
+#smoke-puff.show {
+  animation: smoke 2s forwards;
+}
+
+/*====================================
+        TEXT
+====================================*/
+
+#cake-instruction {
+  margin-top: 45px;
+
+  color: #fff;
+
+  font-size: 28px;
+
+  text-shadow: 0 0 15px #ff80b8;
+}
+
+/*====================================
+        BUTTON
+====================================*/
+
+#btn-blow-candle {
+  margin-top: 35px;
+}
+
+/*====================================
+        GLOW
+====================================*/
+
+.cake-premium::after {
+  content: "";
+
+  position: absolute;
+
+  inset: -40px;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 180, 220, 0.18),
+    transparent 70%
+  );
+
+  z-index: -1;
+
+  animation: pulseGlow 3s infinite;
+}
+
+/*====================================
+        ANIMATION
+====================================*/
+
+@keyframes flicker {
+  from {
+    transform: translateX(-50%) scale(1) rotate(-2deg);
+  }
+
+  to {
+    transform: translateX(-50%) scale(1.08) rotate(2deg);
+  }
+}
+
+@keyframes floatingCake {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes smoke {
+  from {
+    opacity: 0.8;
+
+    transform: translate(-50%, 0) scale(0.5);
+  }
+
+  to {
+    opacity: 0;
+
+    transform: translate(-50%, -80px) scale(2);
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}
+/*=====================================================
+                PART 6
+            SCENE FINAL MESSAGE
+=====================================================*/
+
+#scene-final-message {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 170, 210, 0.1),
+    transparent 70%
+  );
+}
+
+/*====================================
+        MESSAGE CARD
+====================================*/
+
+.message-card {
+  position: relative;
+
+  width: 760px;
+  max-width: 90%;
+
+  padding: 60px;
+
+  border-radius: 30px;
+
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  /* Safari */
+  -webkit-backdrop-filter: blur(18px);
+
+  /* Chrome / Edge */
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.45),
+    0 0 35px rgba(255, 120, 180, 0.18);
+
+  animation: floatingCard 6s ease-in-out infinite;
+}
+/*====================================
+            HEART
+====================================*/
+
+.icon-heart {
+  font-size: 80px;
+
+  margin-bottom: 25px;
+
+  filter: drop-shadow(0 0 25px #ff4d88);
+
+  animation: heartBeat 1.6s infinite;
+}
+
+/*====================================
+            TITLE
+====================================*/
+
+.message-card h1 {
+  font-size: 54px;
+
+  color: #ffffff;
+
+  font-weight: 800;
+
+  margin-bottom: 30px;
+
+  letter-spacing: 2px;
+
+  text-shadow:
+    0 0 15px white,
+    0 0 35px #ff70b5;
+}
+
+/*====================================
+        TYPING MESSAGE
+====================================*/
+
+.typing-wrapper {
+  min-height: 260px;
+
+  text-align: left;
+
+  line-height: 2;
+
+  font-size: 22px;
+
+  color: #fff;
+
+  white-space: pre-wrap;
+
+  letter-spacing: 0.8px;
+
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+}
+
+/*====================================
+        CURSOR
+====================================*/
+
+.typing-wrapper::after {
+  content: "|";
+
+  color: #ffd5ea;
+
+  animation: blinkCursor 0.8s infinite;
+}
+
+/*====================================
+        BUTTON
+====================================*/
+
+#btn-go-gift {
+  margin-top: 45px;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: 0.5s;
+}
+
+#btn-go-gift.show {
+  opacity: 1;
+
+  pointer-events: auto;
+}
+
+/*====================================
+        GLOW BORDER
+====================================*/
+
+.message-card::before {
+  content: "";
+
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+
+  border-radius: 32px;
+
+  background: linear-gradient(
+    135deg,
+    #ff7ab8,
+    #ffd86f,
+    #7ef9ff,
+    #b388ff,
+    #ff7ab8
+  );
+
+  background-size: 300% 300%;
+
+  filter: blur(8px);
+
+  opacity: 0.8;
+
+  z-index: -1;
+
+  animation: borderGlow 6s linear infinite;
+}
+
+@keyframes borderGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/*====================================
+        LIGHT EFFECT
+====================================*/
+
+.message-card::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 30px;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.08),
+    transparent 75%
+  );
+
+  pointer-events: none;
+}
+
+/*====================================
+        ANIMATIONS
+====================================*/
+
+@keyframes heartBeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.12);
+  }
+
+  50% {
+    transform: scale(0.95);
+  }
+
+  75% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes floatingCard {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes blinkCursor {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes borderGlow {
+  from {
+    filter: hue-rotate(0deg);
+  }
+
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/*====================================
+        RESPONSIVE
+====================================*/
+
+@media (max-width: 768px) {
+  .message-card {
+    width: 92%;
+
+    padding: 35px 25px;
+  }
+
+  .message-card h1 {
+    font-size: 34px;
+  }
+
+  .typing-wrapper {
+    font-size: 18px;
+
+    min-height: 220px;
+  }
+
+  .icon-heart {
+    font-size: 60px;
+  }
+}
+/*=====================================================
+                PART 7
+            SCENE GIFT
+=====================================================*/
+
+#scene-gift {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 180, 210, 0.12),
+    transparent 70%
+  );
+}
+
+/*====================================
+        GIFT WRAPPER
+====================================*/
+
+.gift-wrapper {
+  position: relative;
+
+  text-align: center;
+
+  z-index: 5;
+}
+
+/*====================================
+        GIFT BOX
+====================================*/
+
+.gift-box-3d {
+  position: relative;
+
+  width: 260px;
+
+  margin: auto;
+
+  cursor: pointer;
+
+  animation: giftFloat 4s ease-in-out infinite;
+}
+
+/*====================================
+        GIFT IMAGE
+====================================*/
+
+#gift-img {
+  width: 100%;
+
+  display: block;
+
+  filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.45));
+
+  transition: 0.5s;
+}
+
+.gift-box-3d:hover #gift-img {
+  transform: scale(1.05);
+}
+
+/*====================================
+        LID
+====================================*/
+
+.gift-lid-top {
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 45%;
+
+  transform-origin: top center;
+
+  transition: 0.8s;
+
+  pointer-events: none;
+}
+
+.gift-box-3d.open .gift-lid-top {
+  transform: translateY(-100px) rotateX(70deg);
+}
+
+/*====================================
+        GLOW
+====================================*/
+
+.gift-box-3d::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -45px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.18),
+    transparent 70%
+  );
+
+  animation: giftGlow 3s infinite;
+
+  z-index: -1;
+}
+
+/*====================================
+        TITLE
+====================================*/
+
+.gift-title {
+  margin-top: 45px;
+
+  color: white;
+
+  font-size: 42px;
+
+  font-weight: 800;
+
+  text-shadow:
+    0 0 18px #fff,
+    0 0 35px #ff79b5;
+}
+
+/*====================================
+        HINT
+====================================*/
+
+.gift-hint {
+  margin-top: 20px;
+
+  color: #ffe7f2;
+
+  font-size: 22px;
+
+  letter-spacing: 2px;
+
+  animation: hintBlink 2s infinite;
+}
+
+/*====================================
+        LIGHT RAYS
+====================================*/
+
+.gift-wrapper::after {
+  content: "";
+
+  position: absolute;
+
+  width: 650px;
+
+  height: 650px;
+
+  left: 50%;
+
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.08),
+    transparent 70%
+  );
+
+  animation: rotateLight 18s linear infinite;
+
+  z-index: -2;
+}
+
+/*====================================
+        PARTICLES
+====================================*/
+
+.gift-particle {
+  position: absolute;
+
+  width: 6px;
+
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  box-shadow:
+    0 0 12px white,
+    0 0 25px #ff75b7;
+
+  animation: particleFloat 4s linear infinite;
+}
+
+/*====================================
+        HEARTS
+====================================*/
+
+.gift-heart {
+  position: absolute;
+
+  color: #ff4d8d;
+
+  font-size: 28px;
+
+  animation: heartUp 3s linear forwards;
+}
+
+/*====================================
+        OPEN EFFECT
+====================================*/
+
+.gift-box-3d.open {
+  animation: giftShake 0.4s;
+}
+
+/*====================================
+        ANIMATION
+====================================*/
+
+@keyframes giftFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes giftGlow {
+  0%,
+  100% {
+    opacity: 0.35;
+
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform: scale(1.15);
+  }
+}
+
+@keyframes rotateLight {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes hintBlink {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes particleFloat {
+  from {
+    transform: translateY(0) scale(0.5);
+
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(-260px) scale(1.5);
+
+    opacity: 0;
+  }
+}
+
+@keyframes heartUp {
+  from {
+    transform: translateY(0) scale(0.8);
+
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(-260px) scale(1.6);
+
+    opacity: 0;
+  }
+}
+
+@keyframes giftShake {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-4deg);
+  }
+
+  50% {
+    transform: rotate(4deg);
+  }
+
+  75% {
+    transform: rotate(-3deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/*====================================
+        RESPONSIVE
+====================================*/
+
+@media (max-width: 768px) {
+  .gift-box-3d {
+    width: 190px;
+  }
+
+  .gift-title {
+    font-size: 30px;
+  }
+
+  .gift-hint {
+    font-size: 18px;
+  }
+}
+/*=====================================================
+                PART 8
+            SCENE ENDING
+=====================================================*/
+
+#scene-end {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 120, 180, 0.12),
+    transparent 75%
+  );
+}
+
+/*====================================
+        WRAPPER
+====================================*/
+
+.end-cinematic-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  text-align: center;
+
+  z-index: 5;
+}
+
+/*====================================
+        FINAL FRAME
+====================================*/
+
+.final-frame {
+  position: relative;
+
+  width: 900px;
+  max-width: 92%;
+  margin: auto;
+  padding: 60px;
+
+  border-radius: 35px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  /* Safari */
+  -webkit-backdrop-filter: blur(18px);
+
+  /* Chrome / Edge */
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.45),
+    0 0 50px rgba(255, 120, 180, 0.18);
+
+  animation: endingFloat 6s ease-in-out infinite;
+}
+
+/*====================================
+        NAME
+====================================*/
+
+.end-title-name {
+  font-size: 60px;
+
+  font-weight: 900;
+
+  color: #fff;
+
+  letter-spacing: 4px;
+
+  text-shadow:
+    0 0 15px white,
+    0 0 35px #ff7eb5,
+    0 0 60px #ff4d8d;
+
+  animation: endingGlow 3s infinite alternate;
+}
+
+/*====================================
+        SUB TITLE
+====================================*/
+
+.end-sub-line {
+  margin-top: 25px;
+
+  font-size: 28px;
+
+  color: #ffe3ef;
+
+  text-shadow: 0 0 15px #ff8fc5;
+}
+
+/*====================================
+        PARAGRAPH
+====================================*/
+
+.end-paragraph {
+  margin-top: 35px;
+
+  line-height: 2;
+
+  font-size: 22px;
+
+  color: #ffffff;
+
+  opacity: 0.9;
+}
+
+/*====================================
+        FIREWORK TEXT
+====================================*/
+
+.end-firework-fx {
+  margin-top: 40px;
+
+  font-size: 30px;
+
+  font-weight: 700;
+
+  color: #ffd36f;
+
+  animation: sparkleText 2s infinite;
+}
+
+/*====================================
+        END MESSAGE
+====================================*/
+
+.ending-message {
+  margin-top: 50px;
+
+  color: white;
+}
+
+.ending-message h2 {
+  margin-top: 25px;
+
+  font-size: 40px;
+
+  color: #fff;
+
+  text-shadow: 0 0 15px #ff7eb5;
+}
+
+.ending-message h3 {
+  margin: 25px 0;
+
+  font-size: 28px;
+
+  color: #ffe6f0;
+}
+
+.ending-message p {
+  font-size: 22px;
+
+  line-height: 2;
+}
+
+/*====================================
+        REPLAY BUTTON
+====================================*/
+
+#btn-replay {
+  margin-top: 55px;
+}
+
+/*====================================
+        LIGHT EFFECT
+====================================*/
+
+.final-frame {
+  position: relative;
+
+  width: 900px;
+  max-width: 92%;
+  margin: auto;
+  padding: 60px;
+
+  border-radius: 35px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.45),
+    0 0 50px rgba(255, 120, 180, 0.18);
+
+  overflow: hidden;
+
+  animation: endingFloat 6s ease-in-out infinite;
+}
+
+.final-frame::before {
+  content: "";
+
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+
+  border-radius: 38px;
+
+  background: linear-gradient(
+    90deg,
+    #ff6aa9,
+    #ffd86f,
+    #7cf7ff,
+    #b388ff,
+    #ff6aa9
+  );
+
+  background-size: 300% 300%;
+
+  filter: blur(12px);
+
+  opacity: 0.7;
+
+  z-index: -1;
+
+  animation: borderRainbow 6s linear infinite;
+}
+
+@keyframes borderRainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/*====================================
+        AURORA
+====================================*/
+
+.final-frame::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 35px;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.08),
+    transparent 75%
+  );
+
+  pointer-events: none;
+}
+
+/*====================================
+        ANIMATION
+====================================*/
+
+@keyframes endingGlow {
+  from {
+    text-shadow:
+      0 0 15px white,
+      0 0 35px #ff7eb5;
+  }
+
+  to {
+    text-shadow:
+      0 0 25px white,
+      0 0 55px #ff4d8d,
+      0 0 90px #ff4d8d;
+  }
+}
+
+@keyframes endingFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes sparkleText {
+  0%,
+  100% {
+    opacity: 0.5;
+
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform: scale(1.05);
+  }
+}
+
+@keyframes borderRainbow {
+  from {
+    filter: hue-rotate(0deg);
+  }
+
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/*====================================
+        RESPONSIVE
+====================================*/
+
+@media (max-width: 768px) {
+  .final-frame {
+    padding: 35px 25px;
+  }
+
+  .end-title-name {
+    font-size: 34px;
+  }
+
+  .end-sub-line {
+    font-size: 20px;
+  }
+
+  .end-paragraph {
+    font-size: 17px;
+  }
+
+  .ending-message h2 {
+    font-size: 28px;
+  }
+
+  .ending-message h3 {
+    font-size: 22px;
+  }
+
+  .ending-message p {
+    font-size: 16px;
+  }
+}
+/*=========================================================
+                PART 9
+                RESPONSIVE
+=========================================================*/
+
+/*==============================
+        Laptop nhỏ
+==============================*/
+
+@media (max-width: 1200px) {
+  .intro-content h1 {
+    font-size: 58px;
+  }
+
+  .intro-content h2 {
+    font-size: 30px;
+  }
+
+  .gallery-container {
+    width: 95%;
+  }
+
+  .polaroid-photo {
+    width: 200px;
+  }
+}
+
+/*==============================
+            Tablet
+==============================*/
+
+@media (max-width: 992px) {
+  .scene {
+    padding: 40px 20px;
+  }
+
+  .intro-content h1 {
+    font-size: 46px;
+    line-height: 1.2;
+  }
+
+  .intro-content h2 {
+    font-size: 26px;
+  }
+
+  .intro-content h3 {
+    font-size: 34px;
+  }
+
+  .btn-cinematic {
+    padding: 16px 36px;
+    font-size: 18px;
+  }
+
+  .letter-paper {
+    width: 90%;
+
+    height: 75vh;
+
+    max-height: 75vh;
+
+    padding: 35px;
+
+    overflow-y: auto;
+  }
+  /*==============================
+            Mobile
+==============================*/
+
+  @media (max-width: 768px) {
+    body {
+      overflow-x: hidden;
+    }
+
+    .scene {
+      padding: 25px 18px;
+    }
+
+    .intro-content h1 {
+      font-size: 34px;
+    }
+
+    .intro-content h2 {
+      font-size: 20px;
+    }
+
+    .intro-content h3 {
+      font-size: 26px;
+    }
+
+    .subtle-text {
+      font-size: 16px;
+    }
+
+    .btn-cinematic {
+      font-size: 16px;
+
+      padding: 14px 28px;
+    }
+
+    .envelope-container {
+      width: 280px;
+    }
+
+    .letter-title {
+      font-size: 30px;
+    }
+
+    .birthday-date {
+      font-size: 34px;
+    }
+
+    .gallery-container {
+      width: 100%;
+
+      height: auto;
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      justify-content: center;
+
+      gap: 18px;
+
+      padding-top: 40px;
+    }
+
+    .memory-center-point {
+      display: none;
+    }
+
+    .polaroid-photo {
+      position: relative;
+
+      top: auto;
+
+      left: auto;
+
+      transform: none !important;
+
+      width: 160px;
+    }
+
+    .particle-content h1 {
+      font-size: 42px;
+    }
+
+    .particle-content h2 {
+      font-size: 28px;
+    }
+
+    .cake-premium {
+      transform: scale(0.75);
+    }
+
+    .gift-box-3d img {
+      width: 180px;
+    }
+
+    .gift-title {
+      font-size: 26px;
+    }
+
+    .message-card {
+      padding: 30px 22px;
+    }
+
+    .end-title-name {
+      font-size: 34px;
+    }
+
+    .end-sub-line {
+      font-size: 20px;
+    }
+
+    .end-paragraph {
+      font-size: 17px;
+    }
+  }
+
+  /*==============================
+        Mobile nhỏ
+==============================*/
+
+  @media (max-width: 480px) {
+    .intro-content h1 {
+      font-size: 28px;
+    }
+
+    .intro-content h2 {
+      font-size: 18px;
+    }
+
+    .intro-content h3 {
+      font-size: 22px;
+    }
+
+    .btn-cinematic {
+      width: 100%;
+
+      max-width: 280px;
+    }
+
+    .letter-title {
+      font-size: 26px;
+    }
+
+    .polaroid-photo {
+      width: 140px;
+    }
+
+    .particle-content h1 {
+      font-size: 32px;
+    }
+
+    .particle-content h2 {
+      font-size: 22px;
+    }
+
+    .gift-title {
+      font-size: 22px;
+    }
+
+    .end-title-name {
+      font-size: 28px;
+    }
+
+    .loader-text {
+      font-size: 26px;
+    }
+  }
+
+  /*==============================
+        Landscape Phone
+==============================*/
+
+  @media (max-height: 500px) {
+    .scene {
+      padding: 20px;
+    }
+
+    .intro-content {
+      transform: scale(0.8);
+    }
+
+    .cake-premium {
+      transform: scale(0.65);
+    }
+  }
+  /*=========================================================
+                    PART 10
+        PREMIUM EFFECTS & ANIMATIONS
+=========================================================*/
+
+  /*==============================
+        Smooth Scroll
+==============================*/
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /*==============================
+        Selection
+==============================*/
+
+  ::selection {
+    background: #ff4d8d;
+    color: #fff;
+  }
+
+  ::-moz-selection {
+    background: #ff4d8d;
+    color: #fff;
+  }
+
+  /*==============================
+        Scrollbar
+==============================*/
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a18;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(#ff4d8d, #ff89b5);
+    border-radius: 20px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffd6e8;
+  }
+
+  /*==============================
+        Glass Hover
+==============================*/
+
+  .glass-effect {
+    transition: 0.45s;
+  }
+
+  .glass-effect:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+      0 15px 40px rgba(255, 255, 255, 0.15),
+      0 0 60px rgba(255, 105, 180, 0.25);
+  }
+
+  /*==============================
+        Floating Animation
+==============================*/
+
+  .floating {
+    animation: floating 4s ease-in-out infinite;
+  }
+
+  @keyframes floating {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  /*==============================
+        Pulse
+==============================*/
+
+  .pulse-subtle {
+    animation: pulseHeart 2s infinite;
+  }
+
+  @keyframes pulseHeart {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.15);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /*==============================
+        Fade Up
+==============================*/
+
+  .fade-up {
+    opacity: 0;
+
+    transform: translateY(40px);
+
+    animation-name: fadeUp;
+
+    animation-duration: 1s;
+
+    animation-fill-mode: forwards;
+
+    animation-timing-function: ease;
+  }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+
+      transform: translateY(0);
+    }
+  }
+
+  /*==============================
+        Fade In
+==============================*/
+
+  .fade-in {
+    opacity: 0;
+
+    animation: fadeIn 1.2s forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  /*==============================
+        Scale In
+==============================*/
+
+  .scale-in {
+    opacity: 0;
+
+    transform: scale(0.7);
+
+    animation: scaleIn 1s forwards;
+  }
+
+  @keyframes scaleIn {
+    to {
+      opacity: 1;
+
+      transform: scale(1);
+    }
+  }
+
+  /*==============================
+        Glow Animation
+==============================*/
+
+  .neon-gold {
+    animation: goldGlow 2s infinite alternate;
+  }
+
+  @keyframes goldGlow {
+    from {
+      text-shadow:
+        0 0 10px gold,
+        0 0 20px gold;
+    }
+
+    to {
+      text-shadow:
+        0 0 30px gold,
+        0 0 70px gold;
+    }
+  }
+
+  /*==============================
+        Photo Hover
+==============================*/
+
+  .polaroid-photo {
+    transition: 0.45s;
+  }
+
+  .polaroid-photo:hover {
+    transform: scale(1.08) rotate(0deg) !important;
+
+    box-shadow:
+      0 15px 45px rgba(255, 255, 255, 0.2),
+      0 0 35px rgba(255, 105, 180, 0.35);
+  }
+
+  /*==============================
+        Button Hover
+==============================*/
+
+  button {
+    transition: 0.35s;
+  }
+
+  button:hover {
+    transform: translateY(-4px);
+  }
+
+  button:active {
+    transform: scale(0.95);
+  }
+
+  /*==============================
+        Image Hover
+==============================*/
+
+  img {
+    transition: 0.45s;
+  }
+
+  img:hover {
+    filter: brightness(1.08);
+  }
+
+  /*==============================
+        Firework Glow
+==============================*/
+
+  .end-firework-fx {
+    animation: fireGlow 2s infinite alternate;
+  }
+
+  @keyframes fireGlow {
+    from {
+      text-shadow:
+        0 0 10px #fff,
+        0 0 20px gold;
+    }
+
+    to {
+      text-shadow:
+        0 0 30px gold,
+        0 0 60px #fff;
+    }
+  }
+
+  /*==============================
+        Hint Text
+==============================*/
+
+  .hint-text {
+    animation: hintFloat 2s infinite;
+  }
+
+  @keyframes hintFloat {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  /*==============================
+        Optimize
+==============================*/
+
+  canvas,
+  img,
+  button,
+  .polaroid-photo,
+  .glass-effect {
+    will-change: transform, opacity;
+  }
+
+  /*==============================
+        Disable Highlight
+==============================*/
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /*==============================
+        Finish
+==============================*/
+
+  body.loaded {
+    animation: pageFade 0.8s;
+  }
+
+  @keyframes pageFade {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+  .loader-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    transition: opacity 0.8s ease;
+  }
+
+  .loader-screen.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  #btn-next-scene {
+    position: relative;
+    z-index: 9999;
+    display: inline-flex;
+    margin: 40px auto;
+  }
+  .letter-paper .btn-cinematic {
+    position: relative;
+    z-index: 10;
+    margin-bottom: 30px;
+  }
+  /* OPEN LETTER */
+  .letter-paper {
+    width: 760px;
+    max-width: 90%;
+
+    height: 75vh;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border-radius: 20px;
+
+    padding: 35px;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(40px) scale(0.95);
+
+    transition: 0.8s;
+  }
+
+  .letter-paper.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+  /* =========================
+      LETTER OPEN EFFECT
+========================= */
+
+  /* =========================
+   Kéo cả cụm phong bì + thư lên trên
+========================= */
+
+  .letter-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+  }
+  #btn-next-scene {
+    display: block !important;
+
+    margin: 30px auto 0;
+
+    position: relative;
+
+    z-index: 10;
+  }
+  .envelope-container {
+    margin-bottom: 30px;
+  }
+
+  #scene-letter .letter-wrapper {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+  }
+  #scene-letter .letter-wrapper {
+    transform: translateY(-40px);
+  }
+  .letter-scroll {
+    height: 100%;
+    overflow-y: auto;
+
+    padding-right: 15px;
+
+    line-height: 1.8;
+    font-size: 18px;
+
+    text-align: left;
+  }
+
+  .letter-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .letter-scroll::-webkit-scrollbar-thumb {
+    background: #ff8ab8;
+
+    border-radius: 20px;
+  }
+  /*=========================
+        SCENE 3
+=========================*/
+
+  /* =========================
+        SCENE 3 FIX
+========================= */
+
+  /* =========================
+        SCENE 3 MEMORY
+========================= */
+
+  #scene-memories {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow: hidden;
+  }
+
+  /* TITLE */
+
+  .memory-intro {
+    text-align: center;
+
+    z-index: 50;
+
+    margin-bottom: 20px;
+  }
+
+  .memory-title {
+    color: white;
+
+    font-size: 45px;
+
+    font-weight: 700;
+
+    text-shadow:
+      0 0 20px #ff8fc7,
+      0 0 40px #ff4fa3;
+  }
+
+  .memory-subtitle {
+    color: #ffd7e8;
+
+    font-size: 20px;
+  }
+
+  /* KHUNG ẢNH */
+
+  .gallery-heart {
+    position: relative;
+
+    width: 1000px;
+
+    height: 650px;
+
+    margin-top: 10px;
+  }
+
+  /* POLAROID */
+
+  .photo-card {
+    position: absolute;
+
+    width: 190px;
+
+    height: 250px;
+
+    padding: 12px;
+
+    background: white;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 25px rgba(255, 120, 200, 0.5);
+
+    transition: 0.6s;
+
+    opacity: 1;
+  }
+
+  .photo-card img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+  }
+
+  /* chữ */
+
+  .photo-card span {
+    position: absolute;
+
+    bottom: 15px;
+
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    color: #ff4f9a;
+
+    font-weight: bold;
+  }
+
+  /* vị trí */
+
+  .p1 {
+    left: 80px;
+
+    top: 80px;
+
+    transform: rotate(-15deg);
+  }
+
+  .p2 {
+    left: 250px;
+
+    top: 20px;
+
+    transform: rotate(-8deg);
+  }
+
+  .p3 {
+    left: 50%;
+
+    top: 10px;
+
+    transform: translateX(-50%) rotate(0deg);
+
+    width: 230px;
+
+    height: 300px;
+
+    z-index: 10;
+  }
+
+  .p4 {
+    right: 250px;
+
+    top: 20px;
+
+    transform: rotate(8deg);
+  }
+
+  .p5 {
+    right: 80px;
+
+    top: 80px;
+
+    transform: rotate(15deg);
+  }
+  .p6 {
+    left: 20px;
+    top: 220px;
+    transform: rotate(-18deg);
+  }
+
+  .p7 {
+    left: 190px;
+    top: 180px;
+    transform: rotate(-8deg);
+  }
+
+  .p8 {
+    right: 190px;
+    top: 180px;
+    transform: rotate(8deg);
+  }
+
+  .p9 {
+    right: 20px;
+    top: 220px;
+    transform: rotate(18deg);
+  }
+
+  .p10 {
+    left: 50%;
+    bottom: -20px;
+    transform: translateX(-50%) rotate(0deg);
+  }
+
+  /* hover */
+
+  .photo-card:hover {
+    transform: translateY(-30px) scale(1.15) rotate(0deg);
+
+    z-index: 100;
+
+    box-shadow: 0 0 50px #ff8acb;
+  }
+
+  /* dòng dưới */
+
+  .memory-tip {
+    margin-top: 20px;
+
+    color: white;
+
+    font-size: 18px;
+  }
+
+  #btn-memory-next {
+    margin-top: 15px;
+  }
+
+  /* chữ dưới */
+
+  #btn-memory-next {
+    margin-top: 15px;
+  }
+  #btn-start {
+    position: relative;
+    z-index: 9999;
+    display: inline-flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+/* =========================
+       MEMORY POPUP
+========================= */
+
+#memory-popup {
+  position: fixed;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: none;
+
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.8);
+
+  z-index: 999999;
+}
+
+.memory-box {
+  width: 420px;
+
+  background: #fff;
+
+  border-radius: 25px;
+
+  padding: 30px;
+
+  text-align: center;
+
+  box-shadow: 0 0 60px rgba(255, 105, 180, 0.5);
+
+  animation: popup 0.4s;
+}
+
+.memory-box img {
+  width: 260px;
+
+  height: 260px;
+
+  object-fit: cover;
+
+  border-radius: 20px;
+}
+
+#close-memory {
+  position: absolute;
+
+  top: 15px;
+
+  right: 20px;
+
+  font-size: 28px;
+
+  background: none;
+
+  border: none;
+
+  cursor: pointer;
+}
+#next-question {
+  background: #ff6fae;
+
+  color: white;
+
+  border: none;
+
+  padding: 12px 20px;
+
+  border-radius: 30px;
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0.5);
+
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+
+    opacity: 1;
+  }
+}
+.photo-card {
+  opacity: 0;
+  animation: photoShow 1s ease forwards;
+}
+
+@keyframes photoShow {
+  from {
+    opacity: 0;
+
+    translate: 0 150px;
+
+    scale: 0.3;
+  }
+
+  to {
+    opacity: 1;
+
+    translate: 0 0;
+
+    scale: 1;
+  }
+}
+/* BACKGROUND */
+#background-layers {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* TẤT CẢ SCENE */
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+/* SCENE ĐANG HIỆN */
+.scene.active {
+  z-index: 20;
+}
+
+/* CHỮ SCENE 4 */
+.h1-main,
+.h2-sub,
+.p-desc {
+  position: relative;
+
+  z-index: 999;
+
+  display: block;
+
+  opacity: 1;
+
+  visibility: visible;
+
+  color: white;
+}
