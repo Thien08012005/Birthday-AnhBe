@@ -108,22 +108,30 @@ function nextScene() {
       if (currentScene === 2) {
         const photos = scenes[currentScene].querySelectorAll(".photo-card");
 
-        gsap.fromTo(
-          photos,
-          {
-            opacity: 0,
-            y: 80,
-            scale: 0.8,
-          },
-          {
+        if (window.innerWidth < 768) {
+          gsap.set(photos, {
             opacity: 1,
-            y: 0,
             scale: 1,
-            stagger: 0.15,
-            duration: 0.8,
-            ease: "back.out(1.7)",
-          },
-        );
+            y: 0,
+          });
+        } else {
+          gsap.fromTo(
+            photos,
+            {
+              opacity: 0,
+              y: 80,
+              scale: 0.8,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              stagger: 0.15,
+              duration: 0.8,
+              ease: "back.out(1.7)",
+            },
+          );
+        }
       }
 
       // =========================
