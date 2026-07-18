@@ -4971,3 +4971,44 @@ img {
 .mobile .glow {
   animation: none;
 }
+/* =========================
+   MOBILE PHOTO SLIDER
+========================= */
+
+@media (max-width: 768px) {
+  .photo-container {
+    display: flex;
+
+    overflow-x: auto;
+
+    gap: 20px;
+
+    padding: 20px;
+
+    scroll-snap-type: x mandatory;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .photo-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .photo-card {
+    min-width: 85vw;
+
+    flex-shrink: 0;
+
+    scroll-snap-align: center;
+  }
+
+  .photo-card img {
+    width: 100%;
+
+    height: auto;
+
+    border-radius: 20px;
+
+    object-fit: cover;
+  }
+}
