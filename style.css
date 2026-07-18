@@ -4911,39 +4911,8 @@ button:disabled {
     scale: 1;
   }
 }
-/* BACKGROUND */
-#background-layers {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* TẤT CẢ SCENE */
-.scene {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-}
-
-/* SCENE ĐANG HIỆN */
-.scene.active {
-  z-index: 20;
-}
-
-/* CHỮ SCENE 4 */
-.h1-main,
-.h2-sub,
-.p-desc {
-  position: relative;
-
-  z-index: 999;
-
-  display: block;
-
-  opacity: 1;
-
-  visibility: visible;
-
-  color: white;
+#scene-particle {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }

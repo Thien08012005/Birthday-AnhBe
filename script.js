@@ -33,7 +33,12 @@ function showScene(index) {
     scene.classList.remove("active");
 
     gsap.set(scene, {
-      clearProps: "all",
+      opacity: 0,
+      visibility: "hidden",
+      scale: 1,
+      x: 0,
+      y: 0,
+      rotation: 0,
     });
   });
 
@@ -42,20 +47,16 @@ function showScene(index) {
 
     gsap.set(scenes[index], {
       opacity: 1,
-
+      visibility: "visible",
       scale: 1,
-
       x: 0,
-
       y: 0,
-
       rotation: 0,
     });
   }
 
   currentScene = index;
 }
-
 /*=========================================================
             GO TO NEXT SCENE
 =========================================================*/
@@ -68,93 +69,65 @@ function nextScene() {
 
   gsap.to(oldScene, {
     opacity: 0,
-
     duration: 0.8,
-
     ease: "power2.out",
 
     onComplete: () => {
+      // Ẩn scene cũ
       oldScene.classList.remove("active");
 
-      scenes[nextIndex].classList.add("active");
-      gsap.set(scenes[nextIndex], {
-        opacity: 1,
-        visibility: "visible",
-      });
-
-      gsap.fromTo(
-        scenes[nextIndex],
-
-        {
-          opacity: 0,
-          scale: 1.03,
-        },
-
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-          ease: "power2.out",
-        },
-      );
-
-      currentScene = nextIndex;
+      // Hiện scene mới
+      showScene(nextIndex);
 
       console.log("Chuyển sang scene:", currentScene);
+
+      // Đóng popup nếu còn mở
+      const popup = document.getElementById("memory-popup");
+      if (popup) {
+        popup.style.display = "none";
+      }
 
       // =========================
       // SCENE 3 - ẢNH
       // =========================
-
       if (currentScene === 2) {
-        gsap.from(".photo-card", {
-          opacity: 0,
+        const photos = scenes[currentScene].querySelectorAll(".photo-card");
 
-          y: 80,
-
-          stagger: 0.15,
-
-          duration: 0.8,
-
-          ease: "back.out(1.7)",
-        });
+        gsap.fromTo(
+          photos,
+          {
+            opacity: 0,
+            y: 80,
+            scale: 0.8,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            stagger: 0.15,
+            duration: 0.8,
+            ease: "back.out(1.7)",
+          },
+        );
       }
 
       // =========================
-      // SCENE 4 - CHỮ HIỆN
+      // SCENE 4 - CHỮ
       // =========================
-
       if (currentScene === 3) {
         const title = scenes[currentScene].querySelector(".h1-main");
-
         const sub = scenes[currentScene].querySelector(".h2-sub");
-
         const desc = scenes[currentScene].querySelector(".p-desc");
 
         console.log("SCENE 4:", title, sub, desc);
 
-        // ép hiện chữ
-
-        gsap.set([title, sub, desc], {
-          opacity: 1,
-          visibility: "visible",
-        });
-
-        gsap.set([title, sub, desc], {
-          opacity: 1,
-          visibility: "visible",
-          display: "block",
-        });
-
         if (title) {
           gsap.fromTo(
             title,
-
             {
               opacity: 0,
-              scale: 0.4,
+              scale: 0.5,
             },
-
             {
               opacity: 1,
               scale: 1,
@@ -164,44 +137,34 @@ function nextScene() {
           );
         }
 
-        // ANH BÉ ❤️
-
         if (sub) {
           gsap.fromTo(
             sub,
-
-            {
-              opacity: 0,
-              y: 50,
-            },
-
-            {
-              opacity: 1,
-              y: 0,
-              delay: 0.5,
-              duration: 1,
-              ease: "power2.out",
-            },
-          );
-        }
-
-        // mô tả
-
-        if (desc) {
-          gsap.fromTo(
-            desc,
-
             {
               opacity: 0,
               y: 40,
             },
-
             {
               opacity: 1,
               y: 0,
-              delay: 1,
               duration: 1,
-              ease: "power2.out",
+              delay: 0.3,
+            },
+          );
+        }
+
+        if (desc) {
+          gsap.fromTo(
+            desc,
+            {
+              opacity: 0,
+              y: 30,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              delay: 0.6,
             },
           );
         }
@@ -2081,30 +2044,6 @@ console.log("❤️ Happy Birthday Anh Bé ❤️");
 /*===============================
         STAR TWINKLE
 ================================*/
-
-function createStars() {
-  const container = document.getElementById("background-layers");
-
-  if (!container) return;
-
-  for (let i = 0; i < 180; i++) {
-    const star = document.createElement("span");
-
-    star.className = "star";
-
-    star.style.left = Math.random() * 100 + "%";
-
-    star.style.top = Math.random() * 100 + "%";
-
-    star.style.animationDelay = Math.random() * 5 + "s";
-
-    star.style.animationDuration = 2 + Math.random() * 4 + "s";
-
-    container.appendChild(star);
-  }
-}
-
-createStars();
 
 /*===============================
         SHOOTING STAR
