@@ -105,6 +105,18 @@ function nextScene() {
       // =========================
       // SCENE 3 - ẢNH
       // =========================
+      // MOBILE STOP 3D CAROUSEL
+      if (window.innerWidth < 768) {
+        const cards = document.querySelectorAll(".photo-card");
+
+        cards.forEach((card) => {
+          gsap.killTweensOf(card);
+
+          card.style.transform = "none";
+          card.style.position = "relative";
+          card.style.opacity = "1";
+        });
+      }
       if (currentScene === 2) {
         const photos = scenes[currentScene].querySelectorAll(".photo-card");
 
