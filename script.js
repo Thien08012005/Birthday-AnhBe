@@ -4,6 +4,21 @@
 =========================================================*/
 
 "use strict";
+// =========================
+// DEVICE CHECK
+// =========================
+
+function checkMobile() {
+  if (window.innerWidth < 768) {
+    document.body.classList.add("mobile");
+  } else {
+    document.body.classList.remove("mobile");
+  }
+}
+
+checkMobile();
+
+window.addEventListener("resize", checkMobile);
 
 /*=========================================================
                     ELEMENTS
@@ -238,7 +253,9 @@ btnReplay?.addEventListener("click", () => {
 function createStars() {
   const layer = document.getElementById("background-layers");
 
-  for (let i = 0; i < 180; i++) {
+  let count = window.innerWidth < 768 ? 70 : 180;
+
+  for (let i = 0; i < count; i++) {
     const star = document.createElement("span");
 
     star.className = "star";
@@ -248,8 +265,6 @@ function createStars() {
     star.style.top = Math.random() * 100 + "%";
 
     star.style.animationDelay = Math.random() * 5 + "s";
-
-    star.style.animationDuration = 2 + Math.random() * 4 + "s";
 
     layer.appendChild(star);
   }
@@ -279,25 +294,24 @@ function createMeteor() {
   }, 4000);
 }
 
-setInterval(createMeteor, 4500);
+setInterval(createMeteor, window.innerWidth < 768 ? 9000 : 4500);
 
 /*=========================================================
                 PARALLAX
 =========================================================*/
 
-document.addEventListener("mousemove", (e) => {
-  const x = e.clientX / window.innerWidth;
+if (window.innerWidth > 768) {
+  document.addEventListener("mousemove", (e) => {
+    const x = e.clientX / window.innerWidth;
+    const y = e.clientY / window.innerHeight;
 
-  const y = e.clientY / window.innerHeight;
-
-  gsap.to("#background-layers", {
-    x: (x - 0.5) * 30,
-
-    y: (y - 0.5) * 20,
-
-    duration: 1,
+    gsap.to("#background-layers", {
+      x: (x - 0.5) * 30,
+      y: (y - 0.5) * 20,
+      duration: 1,
+    });
   });
-});
+}
 
 /*=========================================================
                 HEART CURSOR

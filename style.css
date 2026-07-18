@@ -4916,3 +4916,58 @@ button:disabled {
   justify-content: center !important;
   align-items: center !important;
 }
+/* =========================
+   MOBILE OPTIMIZATION
+========================= */
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.scene {
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* giảm blur trên mobile */
+@media (max-width: 768px) {
+  .glass,
+  .card,
+  .photo-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .static-name h1,
+  .h1-main {
+    font-size: clamp(35px, 10vw, 60px);
+  }
+
+  .h2-sub {
+    font-size: 24px;
+  }
+
+  .p-desc {
+    font-size: 16px;
+    padding: 0 20px;
+  }
+}
+.mobile .meteor {
+  display: none;
+}
+
+.mobile .glow {
+  animation: none;
+}
